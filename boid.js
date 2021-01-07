@@ -87,11 +87,6 @@ function rule4(boid) {
   return res;
 }
 
-// Random tendencies
-function rule5(boid) {
-  return createVector(0.02,-0.02);
-}
-
 class Boid {
   constructor(x=canvasWidth/2, y=canvasHeight/2, vx=0, vy=0) {
     this.position = createVector(x, y);
