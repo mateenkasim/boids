@@ -32,13 +32,11 @@ function moveBoids() {
     let v2 = rule2(boid);
     let v3 = rule3(boid);
     let v4 = rule4(boid);
-    //let v5 = rule5(boid);
 
     boid.vel.add(v1);
     boid.vel.add(v2);
     boid.vel.add(v3);
     boid.vel.add(v4);
-    //boid.vel.add(v5);
   });
   boids.forEach(boid => {
     boid.limitVel();
