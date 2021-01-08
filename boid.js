@@ -1,10 +1,11 @@
 // Go to center of mass of flock
-function rule1(boid) {
+function rule1(boid, close) {
   let com = createVector();
   let res = createVector();
   let count = 0;
-  if (boids.length > 1) {
-    boids.forEach(neighbor => {
+  if (close.length > 1) {
+    close.forEach(obj => {
+      let neighbor = obj.b;
       let d = p5.Vector.dist(boid.position,neighbor.position);
       if (boid !== neighbor && d < Boid.viewRange) {
         com.add(neighbor.position);
@@ -23,11 +24,12 @@ function rule1(boid) {
 }
 
 // Avoid collisions
-function rule2(boid) {
+function rule2(boid, close) {
   let range = 20;
   let res = createVector(0, 0);
   let count = 0;
-  boids.forEach( neighbor => {
+  close.forEach( obj => {
+    let neighbor = obj.b;
     let d = p5.Vector.dist(boid.position,neighbor.position);
     if ((d > 0) && (d < range)) {
       let diff = p5.Vector.sub(boid.position, neighbor.position);
@@ -51,11 +53,12 @@ function rule2(boid) {
 }
 
 // Match velocity of flock
-function rule3(boid) {
+function rule3(boid, close) {
   let res = createVector();
   let count = 0;
-  if (boids.length > 1) {
-    boids.forEach(neighbor => {
+  if (close.length > 1) {
+    close.forEach(obj => {
+      let neighbor = obj.b;
       let d = p5.Vector.dist(boid.position,neighbor.position);
       if (boid !== neighbor && d < Boid.viewRange) {
         res.add(p5.Vector.sub(neighbor.vel,boid.vel));
@@ -70,7 +73,7 @@ function rule3(boid) {
 }
 
 // Avoid walls
-function rule4(boid) {
+function rule4(boid, close) {
   let res = createVector();
   if (boid.position.x < 40) {
     res.add(0.6);
@@ -100,7 +103,7 @@ class Boid {
   }
   
   static get viewRange() {
-    return 40;
+    return 35;
   }
 
   display() {
