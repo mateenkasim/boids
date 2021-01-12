@@ -1,3 +1,5 @@
+![](images/boidsBanner.png)
+
 # Boids
 A flocking algorithm based on Craig Reynold's original Boids model. Implemented using p5.js functionality. Initialized with a set number of boids, but clicking on the screen adds new boids into the simulation.
 
